@@ -9,14 +9,15 @@ buildscript {
     }
 }
 	
-configure([   	project(':jg-admin'),   	project(':jg-gateway'),   	project(':jg-ticket')   ]) 
-{
+
+project(':jg-admin') {
+	
 	apply plugin: 'java'
 	apply plugin: 'eclipse-wtp'
 	apply plugin: 'idea'
 	apply plugin: 'spring-boot'
 	apply plugin: 'war'
-	
+
 	war {
 	    baseName = 'gs-convert-jar-to-war'
 	    version =  '0.1.0'
@@ -26,21 +27,87 @@ configure([   	project(':jg-admin'),   	project(':jg-gateway'),   	project(':jg-
 	    mavenCentral()
 	    maven { url "http://repo.spring.io/libs-snapshot" }
 	}
-	
+
 	dependencies {
 		compile project(':jg-core')
-	    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-	    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-	    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
-	    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-	    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
-		compile "mysql:mysql-connector-java:5.1.24"
-		compile "c3p0:c3p0:0.9.1.2"
-	    testCompile("junit:junit")
+//    String springBootVersion = "0.5.0.M5"
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	compile("org.hibernate:hibernate-validator")
+//    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
+//    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+//    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+	compile "mysql:mysql-connector-java:5.1.24"
+	compile "c3p0:c3p0:0.9.1.2"
+//    testCompile("junit:junit")
 	}
 	
 	task wrapper(type: Wrapper) {
-	    gradleVersion = '1.11'
+	gradleVersion = '1.11'
+	}
+}
+
+project(':jg-ticket') {
+	
+	apply plugin: 'java'
+	apply plugin: 'eclipse-wtp'
+	apply plugin: 'idea'
+	apply plugin: 'spring-boot'
+	apply plugin: 'war'
+
+	war {
+	    baseName = 'gs-convert-jar-to-war'
+	    version =  '0.1.0'
+	}
+	
+	repositories {
+	    mavenCentral()
+	    maven { url "http://repo.spring.io/libs-snapshot" }
+	}
+
+	dependencies {
+		compile project(':jg-core')
+		compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+		compile("org.springframework.boot:spring-boot-starter-data-jpa")
+		compile("org.hibernate:hibernate-validator")
+		compile "mysql:mysql-connector-java:5.1.24"
+		compile "c3p0:c3p0:0.9.1.2"
+	}
+	
+	task wrapper(type: Wrapper) {
+	gradleVersion = '1.11'
+	}
+}
+
+project(':jg-gateway') {
+	
+	apply plugin: 'java'
+	apply plugin: 'eclipse-wtp'
+	apply plugin: 'idea'
+	apply plugin: 'spring-boot'
+	apply plugin: 'war'
+
+	war {
+	    baseName = 'gs-convert-jar-to-war'
+	    version =  '0.1.0'
+	}
+	
+	repositories {
+	    mavenCentral()
+	    maven { url "http://repo.spring.io/libs-snapshot" }
+	}
+
+	dependencies {
+		compile project(':jg-core')
+		compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+		compile("org.springframework.boot:spring-boot-starter-data-jpa")
+		compile("org.hibernate:hibernate-validator")
+		compile "mysql:mysql-connector-java:5.1.24"
+		compile "c3p0:c3p0:0.9.1.2"
+	}
+	
+	task wrapper(type: Wrapper) {
+	gradleVersion = '1.11'
 	}
 }
 

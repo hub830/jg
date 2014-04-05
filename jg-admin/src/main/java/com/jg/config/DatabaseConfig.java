@@ -18,7 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@EnableJpaRepositories("sample.data.jpa.repository")
+@EnableJpaRepositories("com.jg")
 public class DatabaseConfig {
 
     @Autowired
@@ -41,7 +41,7 @@ public class DatabaseConfig {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource());
         lef.setJpaVendorAdapter(jpaVendorAdapter());
-        lef.setPackagesToScan("com.jg.domain");
+        lef.setPackagesToScan("com.jg");
         return lef;
     }
     
